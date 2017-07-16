@@ -14,7 +14,14 @@
 			return s;
 		}
 		function showProbs() {
-			var s = document.getElementById("eventstr").value;
+			var inputStr = document.getElementById("eventstr").value.toUpperCase();
+			var s = "";
+			for (var i=0; i<inputStr.length; ++i) {
+				var c = inputStr.charAt(i);
+				if (c == 'B' || c == 'S' || c == 'M' || c == 'X') {
+					s += c;
+				}
+			}
             var probs = getProbs(s,3);
 			var tableStr = "<table><tr><th>Card Set</th><th>Probability</th></tr>";
 			var L = [];

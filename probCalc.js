@@ -20,12 +20,11 @@ for (var n=0; n<4; ++n) {
 }
 function condProb(seq, X) {
     var n = X[0]+X[1]+X[2];
-    var prob = 1.0, current = undefined;
+    var prob = 1.0, current;
     var Y = [], c;
     for (var i=0; i<X.length; ++i)
         Y.push(X[i]);
-	seq = seq.toUpperCase();
-    for (var i=0; i<seq.length; ++i) {
+	for (var i=0; i<seq.length; ++i) {
 		c = seq.charAt(i);
         if (c == 'B') {
             Y[current]--;
@@ -41,11 +40,10 @@ function getProbs(seq, startNum) {
     if (startNum === undefined) {
         startNum = 3;
     }
-    seq = seq.toUpperCase();
-    var probs = {}, totalProb = 0.0;
+	var probs = {}, totalProb = 0.0;
     for (var i=0; i<outcomes[startNum].length; ++i) {
         var X = outcomes[startNum][i];
-        probs[X] = condProb(seq, X)*drawProb(X);
+        probs[X] = condProb(seq, X)*drawProbs[X];
         totalProb += probs[X];
     } 
     for (X in probs) {
@@ -71,8 +69,7 @@ function getProbs(seq, startNum) {
 function nextProbs(seq, startNum) {
     var probs = getProbs(seq, startNum);
     var n = startNum;
-	seq = seq.toUpperCase();
-    for (var i=0; i<seq.length; ++i) {
+	for (var i=0; i<seq.length; ++i) {
         if (seq[i] == 'B') {
             --n;
         }
