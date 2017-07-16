@@ -74,6 +74,9 @@ function nextProbs(seq, startNum) {
             --n;
         }
     }
+	if (n == 0) {
+		return [1.0,0.0,0.0];
+	}
     var ans = [];
     for (var i=0; i<3; ++i) {
         var p = 0;
