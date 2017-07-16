@@ -17,6 +17,27 @@ function showProbs() {
 			s += c;
 		}
 	}
+	document.getElementById("eventstr").value = s;
+	var invalid = false;
+	var bctr = 0;
+	if (s.charAt(0) == 'B') {
+		invalid = true;
+	}
+	for (var i=1; i<s.length; ++i) {
+		if (s.charAt(i) == 'B') {
+			++bctr;
+			if (s.charAt(i-1) == 'B') {
+				invalid = true;	
+			}
+		}
+	}
+	if (invalid) {
+		document.getElementById("output").innerHTML = "Invalid input: buyout of nonexistent card";
+		return;
+	} else if (bctr > 3) {
+		document.getElementById("output").innerHTML = "Invalid input: too many buyouts.";
+		return;
+	}
 	var probs = getProbs(s,3);
 	var tableStr = "<table><tr><th>Card Set</th><th>Probability</th></tr>";
 	var L = [];
