@@ -17,7 +17,6 @@ function showProbs() {
 			s += c;
 		}
 	}
-	console.log(s);
 	var probs = getProbs(s,3);
 	var tableStr = "<table><tr><th>Card Set</th><th>Probability</th></tr>";
 	var L = [];
